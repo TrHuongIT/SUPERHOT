@@ -8,8 +8,8 @@ public class PlayerLook : MonoBehaviour
 
     private float xRot = 0f;
 
-    private float xSensitivity = 50f;
-    private float ySensitivity = 50f;
+    private float xSensitivity = 80f;
+    private float ySensitivity = 80f;
     // Start is called before the first frame update
     void Start()
     {
