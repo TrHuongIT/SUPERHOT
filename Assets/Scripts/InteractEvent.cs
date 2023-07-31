@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-public class PlayrUI : MonoBehaviour
+using UnityEngine.Events;
+
+public class InteractEvent : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI promptText;
+    public UnityEvent OnInteract;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +16,5 @@ public class PlayrUI : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void UpdateText(string promptMess)
-    {
-        promptText.text = promptMess;
     }
 }

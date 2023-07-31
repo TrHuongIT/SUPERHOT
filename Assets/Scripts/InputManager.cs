@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
-    private PlayerInput.PlayerActions playerMoveLookAndJumpActions;
+    public PlayerInput.PlayerActions playerActions;
 
     private PlayerMovement playerMovement;
     private PlayerLook playerLook;
@@ -15,10 +15,10 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         playerInput = new PlayerInput();
-        playerMoveLookAndJumpActions = playerInput.Player;
+        playerActions = playerInput.Player;
 
         playerMovement = GetComponent<PlayerMovement>();
-        playerMoveLookAndJumpActions.Jump.performed += ctx => playerMovement.Jump();
+        playerActions.Jump.performed += ctx => playerMovement.Jump();
 
         playerLook = GetComponent<PlayerLook>();
 
@@ -39,21 +39,21 @@ public class InputManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerMovement.PlayerMoveAndMove(playerMoveLookAndJumpActions.Movement.ReadValue<Vector2>());
+        playerMovement.PlayerMoveAndMove(playerActions.Movement.ReadValue<Vector2>());
     }
 
     private void LateUpdate()
     {
-        playerLook.PlayerLookByMouse(playerMoveLookAndJumpActions.Look.ReadValue<Vector2>());
+        playerLook.PlayerLookByMouse(playerActions.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable() 
     {
-        playerMoveLookAndJumpActions.Enable();
+        playerActions.Enable();
     }
 
     private void OnDisable()
     {
-        playerMoveLookAndJumpActions.Disable();
+        playerActions.Disable();
     }
 }

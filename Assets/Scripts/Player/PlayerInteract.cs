@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -8,16 +9,21 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float distance = 3f;
 
     public LayerMask mask;
+    private PlayrUI playrUI;
+    private InputManager inputManager;
     // Start is called before the first frame update
     void Start()
     {
         cam = GetComponent<PlayerLook>().mainCamera;
+        playrUI = GetComponent<PlayrUI>();
+        inputManager = GetComponent<InputManager>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        playrUI.UpdateText(string.Empty); 
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * distance);
 
@@ -27,7 +33,12 @@ public class PlayerInteract : MonoBehaviour
         {
             if (hitInfo.collider.GetComponent<Interactable>() != null)
             {
-                Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
+                Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
+                playrUI.UpdateText(interactable.promptMessage);
+                if (inputManager.playerActions.Interact.triggered)
+                {
+                    interactable.BaseInteract();
+                }
             }
         }
         
