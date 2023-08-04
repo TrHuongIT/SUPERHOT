@@ -8,17 +8,33 @@ public class InteractableEditor : Editor
     public override void OnInspectorGUI()
     {
         Interactable interactable = (Interactable)target;
-        base.OnInspectorGUI();
-        if (interactable.useEvents)
+
+        if (target.GetType() == typeof(EventOnlyInteractable))
         {
-            if(interactable.GetComponent<InteractEvent>() == null) 
-                 interactable.gameObject.AddComponent<InteractEvent>();
-        } else
-        {
-            if(interactable.GetComponent<InteractEvent>() != null)
+            interactable.promptMessage = EditorGUILayout.TextField("Prompt Mess", interactable.promptMessage);
+            EditorGUILayout.HelpBox("EventOnlyInteract can ONLY use UnityEvents.", MessageType.Info);
+
+            if (interactable.GetComponent<InteractEvent>() == null)
             {
-                DestroyImmediate(interactable.GetComponent<InteractEvent>());
+                interactable.useEvents = true;
+                interactable.gameObject.AddComponent<InteractEvent>();
             }
-        }
+        } 
+        else
+        {
+            base.OnInspectorGUI();
+            if (interactable.useEvents)
+            {
+                if (interactable.GetComponent<InteractEvent>() == null)
+                    interactable.gameObject.AddComponent<InteractEvent>();
+            }
+            else
+            {
+                if (interactable.GetComponent<InteractEvent>() != null)
+                {
+                    DestroyImmediate(interactable.GetComponent<InteractEvent>());
+                }
+            }
+        }        
     }
 }
