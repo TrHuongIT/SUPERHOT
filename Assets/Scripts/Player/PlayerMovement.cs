@@ -12,6 +12,11 @@ public class PlayerMovement : MonoBehaviour
     private float gravity = -9.8f;
 
     private float jumpHeight = 3f;
+
+    private bool leftCrouch;
+    private bool crouching;
+    private bool sprinting;
+    private float crouchTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,27 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = characterController.isGrounded;
+
+        if (leftCrouch)
+        {
+            crouchTimer += Time.deltaTime;
+            float p = crouchTimer / 1;
+            p *= p;
+
+            if (crouching)
+            {
+                characterController.height = Mathf.Lerp(characterController.height, 1, p);
+            } else
+            {
+                characterController.height = Mathf.Lerp(characterController.height, 2, p);
+            }
+            
+            if (p > 1)
+            {
+                leftCrouch = false;
+                crouchTimer = 0f;
+            }
+        }
     }
 
     public void PlayerMoveAndMove(Vector2 input)
@@ -44,6 +70,25 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocityDirection.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
             Debug.Log(playerVelocityDirection.y);
+        }
+    }
+
+    public void Crouch()
+    {
+        crouching = !crouching;
+        crouchTimer = 0;
+        leftCrouch = true;
+    }
+
+    public void Sprint()
+    {
+        sprinting = !sprinting;
+        if (sprinting)
+        {
+            speed = 8f;
+        } else
+        {
+            speed = 5f;
         }
     }
 }
