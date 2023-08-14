@@ -790,7 +790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110.28, y: 636.61523}
+  m_AnchoredPosition: {x: 111.5, y: 1056.3}
   m_SizeDelta: {x: 127.82, y: 21.0752}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &662177330
@@ -911,7 +911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 87.09262, y: 634.8265}
+  m_AnchoredPosition: {x: 88.31262, y: 1054.5112}
   m_SizeDelta: {x: 174.1878, y: 52.3538}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &753688776
@@ -1149,7 +1149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110.28, y: 636.61523}
+  m_AnchoredPosition: {x: 111.5, y: 1056.3}
   m_SizeDelta: {x: 127.82, y: 21.0752}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945704627
@@ -2288,6 +2288,7 @@ GameObject:
   - component: {fileID: 1448401070}
   - component: {fileID: 1448401071}
   - component: {fileID: 1448401072}
+  - component: {fileID: 1448401073}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2460,6 +2461,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: {fileID: 1788143144}
+--- !u!114 &1448401073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448401062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8cdde9e737352e4e906f14bcf8af9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1458387331
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,7 +2508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110.28, y: 636.61523}
+  m_AnchoredPosition: {x: 111.5, y: 1056.3}
   m_SizeDelta: {x: 127.82, y: 21.0752}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1458387333
