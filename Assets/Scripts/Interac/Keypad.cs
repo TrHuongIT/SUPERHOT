@@ -5,18 +5,7 @@ using UnityEngine;
 public class Keypad : Interactable
 {
     [SerializeField]private GameObject door;
-    private bool doorOpen;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private bool doorOpen;    
 
     protected override void Interact()
     {

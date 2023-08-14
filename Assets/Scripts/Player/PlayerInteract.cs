@@ -11,7 +11,6 @@ public class PlayerInteract : MonoBehaviour
     public LayerMask mask;
     private PlayrUI playrUI;
     private InputManager inputManager;
-    // Start is called before the first frame update
     void Start()
     {
         cam = GetComponent<PlayerLook>().mainCamera;
@@ -19,8 +18,6 @@ public class PlayerInteract : MonoBehaviour
         inputManager = GetComponent<InputManager>();
         
     }
-
-    // Update is called once per frame
     void Update()
     {
         playrUI.UpdateText(string.Empty); 
