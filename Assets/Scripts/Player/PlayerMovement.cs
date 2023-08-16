@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     //Tạo 1 biến với kiểu dữ liệu là Vector 3 - đồng thời dùng [SF] để hiển thị nó ra ngoài màn hình
     [SerializeField]private Vector3 playerVelocityDirection; 
 
-    private float speed = 5f; //Tốc độ di chuyển của người chơi
+    private float speed = 10f; //Tốc độ di chuyển của người chơi
 
     private bool isGrounded; //Kiểm tra xem người chơi có chạm đất hay không
     private float gravity = -9.8f; //Tự định nghĩa trọng lực với gia tốc trọng trường là -9.8
