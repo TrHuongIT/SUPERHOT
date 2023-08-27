@@ -34,13 +34,14 @@ public class AttackState : BaseState
                 enemy.Agent.SetDestination(enemy.transform.position + (Random.insideUnitSphere * 5));
                 moveTimer = 0;
             }
+            enemy.LastKnowPost = enemy.Player.transform.position;
         }
         else
         {
             losePlayerTimer += Time.deltaTime;
-            if(losePlayerTimer > 0)
+            if(losePlayerTimer > 8)
             {
-                stateMachine.ChangeState(new PatrolState());
+                stateMachine.ChangeState(new SearchState());
             }
         }
     }
@@ -49,12 +50,11 @@ public class AttackState : BaseState
     public void Shoot()
     {
         Transform gunbarrel = enemy.gunBarrel;
-        GameObject bullet = GameObject.Instantiate(Resources.Load("Prefabs/Bullet") as GameObject, gunbarrel.position, enemy.transform.rotation);
+        //GameObject bullet = GameObject.Instantiate(Resources.Load("Prefabs/Bullet") as GameObject, gunbarrel.position, enemy.transform.rotation);
+        GameObject bullet = GameObject.Instantiate(Resources.Load("Prefabs/Bullet") as GameObject, gunbarrel.position, Quaternion.Euler(0f,90f,90f));
         Vector3 shootDirection = (enemy.Player.transform.position - gunbarrel.transform.position).normalized;
-        bullet.GetComponent<Rigidbody>().velocity = shootDirection * 40;
-        //bullet.GetComponent<Rigidbody>().velocity = Quaternion.AngleAxis(Random.Range(-3f, 3f), Vector3.up) * shootDirection * 40;
-
-        Debug.Log("Shoot");
+        bullet.GetComponent<Rigidbody>().velocity = shootDirection * 100;
+        //bullet.GetComponent<Rigidbody>().velocity = Quaternion.AngleAxis(Random.Range(-3f, 3f), Vector3.up) * shootDirection * 40;        
         shotTimer = 0;
     }
 

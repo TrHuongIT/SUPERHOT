@@ -9,9 +9,10 @@ public class Bullet : MonoBehaviour
         Transform hitTrandorm = collision.transform;
         if (hitTrandorm.CompareTag("Player"))
         {
-            Debug.Log("Hit Player");
+            //Debug.Log("Hit Player");
             hitTrandorm.GetComponent<PlayerHealth>().TakeDame(Random.Range(10,15));
         }
+        Debug.Log(collision.gameObject.name);
         Destroy(gameObject);
     }
 }

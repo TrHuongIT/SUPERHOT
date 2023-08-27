@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             playerVelocityDirection.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
-            Debug.Log(playerVelocityDirection.y);
+            //Debug.Log(playerVelocityDirection.y);
         }
     }
 
