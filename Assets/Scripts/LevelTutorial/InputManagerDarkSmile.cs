@@ -9,12 +9,14 @@ public class InputManagerDarkSmile : MonoBehaviour
     public DarkSmileInput.DarkSmileActions darkSmileActions;
 
     private DarkSmileMovement darkSmileMovement;
+    private DSLook dsLook;
 
     private void Awake()
     {
         darkSmileInput = new DarkSmileInput();
         darkSmileActions = darkSmileInput.DarkSmile;
         darkSmileMovement = GetComponent<DarkSmileMovement>();
+        dsLook = GetComponent<DSLook>();
 
         darkSmileActions.Jump.performed += ctx => darkSmileMovement.Jump();
     }
@@ -33,6 +35,11 @@ public class InputManagerDarkSmile : MonoBehaviour
     private void FixedUpdate()
     {
         darkSmileMovement.DSMove(darkSmileActions.Movement.ReadValue<Vector2>());
+    }
+
+    private void LateUpdate()
+    {
+        dsLook.LookByMouse(darkSmileActions.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable()

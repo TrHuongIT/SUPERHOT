@@ -9,7 +9,7 @@ public class DarkSmileMovement : MonoBehaviour
 
     private float speed = 10f;
     private bool isGround;
-    private float jumpPower = 20f;
+    private float jumpPower = 15f;
     // Start is called before the first frame update
     void Start()
     {

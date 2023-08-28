@@ -64,9 +64,13 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
 
-        if (isGrounded && playerVelocityDirection.y < 0) playerVelocityDirection.y = -2f;
+        if (isGrounded && playerVelocityDirection.y < 0)
+        {
+            Debug.Log("Cham dat");
+            playerVelocityDirection.y = -2f;
+        }
 
-        playerVelocityDirection.y += 3 * gravity * Time.deltaTime;
+        playerVelocityDirection.y += gravity * Time.deltaTime;
         characterController.Move(playerVelocityDirection * Time.deltaTime);
     }
 
