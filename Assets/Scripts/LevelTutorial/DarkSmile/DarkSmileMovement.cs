@@ -4,44 +4,45 @@ using UnityEngine;
 
 public class DarkSmileMovement : MonoBehaviour
 {
-    private CharacterController characterController;
-    [SerializeField]private Vector3 velocityDirectionY;
+    private CharacterController cc;
+    private float speed = 5f;
+    private Vector3 moveDirection;
+    [SerializeField]private Vector3 fallDirection;
 
-    private float speed = 10f;
     private bool isGround;
-    private float jumpPower = 15f;
-    // Start is called before the first frame update
-    void Start()
+    private float gravity = -9.8f;
+
+    private void Start()
     {
-        characterController = GetComponent<CharacterController>();  
+        cc = GetComponent<CharacterController>();
+        moveDirection = Vector3.zero;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        isGround = characterController.isGrounded;
+        isGround = cc.isGrounded;
     }
 
-    public void DSMove(Vector2 input)
+    public void dsMove(Vector2 input)
     {
-        Vector3 direction = Vector3.zero;
-        direction.x = input.x;
-        direction.z = input.y;
+        moveDirection.x = input.x;
+        moveDirection.z = input.y;
 
-        characterController.Move(transform.TransformDirection(direction) * speed * Time.deltaTime);
+        cc.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
 
-        if (!isGround ) 
+        if(!isGround)
         {
-            velocityDirectionY.y -= 2f;
-        }              
-        characterController.Move(velocityDirectionY * Time.deltaTime);
+            fallDirection.y += 3f * gravity * Time.deltaTime;
+        }        
+
+        cc.Move(fallDirection * Time.deltaTime);
     }
 
     public void Jump()
     {
         if (isGround)
         {
-            velocityDirectionY.y = jumpPower;
+            fallDirection.y = 10f;
         }
     }
 }

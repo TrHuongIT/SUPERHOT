@@ -9,6 +9,7 @@ public class SearchState : BaseState
     public override void Enter()
     {
         enemy.Agent.SetDestination(enemy.LastKnowPost);
+        Debug.Log(enemy.LastKnowPost);
     }
 
     public override void Perform()

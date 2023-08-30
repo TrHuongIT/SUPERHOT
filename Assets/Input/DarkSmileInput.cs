@@ -62,6 +62,15 @@ public partial class @DarkSmileInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""679f0729-d1d3-49e3-a640-068828344472"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -150,6 +159,17 @@ public partial class @DarkSmileInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d71e923c-e7d8-4043-8576-bfc97ff972bb"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -680,6 +700,7 @@ public partial class @DarkSmileInput : IInputActionCollection2, IDisposable
         m_DarkSmile_Jump = m_DarkSmile.FindAction("Jump", throwIfNotFound: true);
         m_DarkSmile_Look = m_DarkSmile.FindAction("Look", throwIfNotFound: true);
         m_DarkSmile_Interact = m_DarkSmile.FindAction("Interact", throwIfNotFound: true);
+        m_DarkSmile_Sprint = m_DarkSmile.FindAction("Sprint", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -755,6 +776,7 @@ public partial class @DarkSmileInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_DarkSmile_Jump;
     private readonly InputAction m_DarkSmile_Look;
     private readonly InputAction m_DarkSmile_Interact;
+    private readonly InputAction m_DarkSmile_Sprint;
     public struct DarkSmileActions
     {
         private @DarkSmileInput m_Wrapper;
@@ -763,6 +785,7 @@ public partial class @DarkSmileInput : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_DarkSmile_Jump;
         public InputAction @Look => m_Wrapper.m_DarkSmile_Look;
         public InputAction @Interact => m_Wrapper.m_DarkSmile_Interact;
+        public InputAction @Sprint => m_Wrapper.m_DarkSmile_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_DarkSmile; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -784,6 +807,9 @@ public partial class @DarkSmileInput : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_DarkSmileActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_DarkSmileActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_DarkSmileActionsCallbackInterface.OnInteract;
+                @Sprint.started -= m_Wrapper.m_DarkSmileActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_DarkSmileActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_DarkSmileActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_DarkSmileActionsCallbackInterface = instance;
             if (instance != null)
@@ -800,6 +826,9 @@ public partial class @DarkSmileInput : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -915,6 +944,7 @@ public partial class @DarkSmileInput : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

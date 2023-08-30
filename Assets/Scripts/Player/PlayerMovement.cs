@@ -98,10 +98,10 @@ public class PlayerMovement : MonoBehaviour
         sprinting = !sprinting;
         if (sprinting)
         {
-            speed = 8f;
+            speed = 20f;
         } else
         {
-            speed = 5f;
+            speed = 10f;
         }
     }
 }

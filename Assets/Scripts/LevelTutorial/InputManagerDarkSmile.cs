@@ -5,50 +5,39 @@ using UnityEngine.InputSystem;
 
 public class InputManagerDarkSmile : MonoBehaviour
 {
-    private DarkSmileInput darkSmileInput;
-    public DarkSmileInput.DarkSmileActions darkSmileActions;
+    private DarkSmileInput dsInput;
+    private DarkSmileInput.DarkSmileActions dsActions;
 
     private DarkSmileMovement darkSmileMovement;
-    private DSLook dsLook;
+    private DSLook darksmileLook;
 
     private void Awake()
     {
-        darkSmileInput = new DarkSmileInput();
-        darkSmileActions = darkSmileInput.DarkSmile;
+        dsInput = new DarkSmileInput();
+        dsActions = dsInput.DarkSmile;
+
         darkSmileMovement = GetComponent<DarkSmileMovement>();
-        dsLook = GetComponent<DSLook>();
-
-        darkSmileActions.Jump.performed += ctx => darkSmileMovement.Jump();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        darksmileLook = GetComponent<DSLook>();
+        dsActions.Jump.performed += ctx => darkSmileMovement.Jump();
     }
 
     private void FixedUpdate()
     {
-        darkSmileMovement.DSMove(darkSmileActions.Movement.ReadValue<Vector2>());
+        darkSmileMovement.dsMove(dsActions.Movement.ReadValue<Vector2>());
     }
 
     private void LateUpdate()
     {
-        dsLook.LookByMouse(darkSmileActions.Look.ReadValue<Vector2>());
+        darksmileLook.dsLook(dsActions.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable()
     {
-        darkSmileActions.Enable();
+        dsActions.Enable();
     }
 
     private void OnDisable()
     {
-        darkSmileActions.Disable();
+        dsActions.Disable();
     }
 }
