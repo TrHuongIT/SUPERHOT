@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManagerDarkSmile : MonoBehaviour
 {
     private DarkSmileInput dsInput;
-    private DarkSmileInput.DarkSmileActions dsActions;
+    public DarkSmileInput.DarkSmileActions dsActions;
 
     private DarkSmileMovement darkSmileMovement;
     private DSLook darksmileLook;
@@ -17,8 +17,11 @@ public class InputManagerDarkSmile : MonoBehaviour
         dsActions = dsInput.DarkSmile;
 
         darkSmileMovement = GetComponent<DarkSmileMovement>();
-        darksmileLook = GetComponent<DSLook>();
         dsActions.Jump.performed += ctx => darkSmileMovement.Jump();
+        dsActions.Sprint.performed += ctx => darkSmileMovement.dsSprint();
+        dsActions.Crawl.performed += ctx => darkSmileMovement.dsCrawl();
+
+        darksmileLook = GetComponent<DSLook>();
     }
 
     private void FixedUpdate()
